@@ -4,101 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brand Approvals — The Vault</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; min-height: 100vh; }
-  .page { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 12px; }
-  .header-left h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
-  .header-left p { font-size: 13px; color: #666; }
-  .badge { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; background: #e6f7f0; color: #0f6e56; font-size: 11px; padding: 3px 9px; border-radius: 6px; }
-  .filter-row { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
-  .filter-row select { font-size: 13px; padding: 5px 10px; border-radius: 6px; border: 1px solid #ddd; background: #fff; color: #1a1a1a; cursor: pointer; }
-  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
-  .metric { background: #fff; border-radius: 8px; padding: 0.9rem 1rem; border: 1px solid #e8e8e8; }
-  .metric .label { font-size: 12px; color: #888; margin-bottom: 4px; }
-  .metric .value { font-size: 22px; font-weight: 600; line-height: 1.1; }
-  .metric .sub { font-size: 11px; color: #aaa; margin-top: 2px; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.5rem; }
-  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
-  .card { background: #fff; border-radius: 10px; padding: 1rem 1.25rem; border: 1px solid #e8e8e8; margin-bottom: 0; }
-  .card.full { margin-bottom: 1.5rem; }
-  .card h3 { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.85rem; }
-  .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 11px; color: #888; margin-bottom: 8px; }
-  .legend span { display: flex; align-items: center; gap: 4px; }
-  .ldot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
-  .brand-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 13px; }
-  .brand-name { width: 110px; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .bar-bg { flex: 1; background: #f0f0f0; border-radius: 3px; height: 8px; }
-  .bar { height: 8px; border-radius: 3px; background: #1D9E75; }
-  .bcount { width: 28px; text-align: right; color: #888; font-size: 12px; }
-  .recent-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
-  .recent-row:last-child { border-bottom: none; }
-  .recent-brand { font-weight: 500; }
-  .recent-date { color: #888; font-size: 12px; }
-  .urgent-tag { display: inline-flex; align-items: center; gap: 3px; background: #fff0ee; color: #c0392b; font-size: 10px; padding: 1px 5px; border-radius: 4px; margin-left: 6px; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --green:#1DB954;
+    --green-dim:rgba(29,185,84,0.15);
+    --amber:#F5A623;
+    --red:#E5534B;
+    --bg:#0A0A0A;
+    --surface:#111111;
+    --surface2:#1A1A1A;
+    --surface3:#242424;
+    --border:rgba(255,255,255,0.08);
+    --text:#FFFFFF;
+    --text2:#A0A0A0;
+    --text3:#606060;
+  }
+  body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  .page{max-width:1100px;margin:0 auto;padding:2.5rem 2rem}
+
+  /* header */
+  .channel-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem}
+  .channel-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+  h1{font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1;letter-spacing:-0.02em;margin-bottom:0.25rem}
+  h1 span{color:var(--text3)}
+  .notice{display:flex;align-items:flex-start;gap:8px;background:rgba(245,166,35,0.08);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;padding:10px 14px;margin:1.25rem 0;font-size:12px;color:var(--text2);line-height:1.5}
+  .notice i{color:var(--amber);font-size:14px;margin-top:1px;flex-shrink:0}
+
+  /* filters */
+  .filter-bar{display:flex;align-items:center;gap:8px;margin:1.5rem 0;flex-wrap:wrap}
+  .filter-label{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;margin-right:4px}
+  .pill{background:var(--surface3);border:1px solid var(--border);color:var(--text2);font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;padding:6px 16px;border-radius:999px;cursor:pointer;transition:all 0.15s}
+  .pill:hover{border-color:rgba(255,255,255,0.2);color:var(--text)}
+  .pill.active{background:var(--green);border-color:var(--green);color:#000;font-weight:600}
+  .pill.urgent-pill.active{background:var(--red);border-color:var(--red);color:#fff}
+  .divider{width:1px;height:24px;background:var(--border);margin:0 4px}
+  .search-wrap{position:relative;margin-left:auto}
+  .search-wrap input{background:var(--surface3);border:1px solid var(--border);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:13px;padding:6px 14px 6px 34px;border-radius:999px;width:200px;outline:none;transition:border-color 0.15s}
+  .search-wrap input::placeholder{color:var(--text3)}
+  .search-wrap input:focus{border-color:rgba(255,255,255,0.25)}
+  .search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:0.4;pointer-events:none}
+
+  /* stat cards */
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+  @media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+  .stat{background:var(--surface);padding:1.25rem 1.5rem}
+  .stat .val{font-size:48px;font-weight:700;line-height:1;letter-spacing:-0.03em}
+  .stat .val.green{color:var(--green)}
+  .stat .val.amber{color:var(--amber)}
+  .stat .val.white{color:var(--text)}
+  .stat .val.brand{font-size:28px;padding-top:6px}
+  .stat .lbl{font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+  .stat .sub{font-size:12px;color:var(--text3);margin-top:4px}
+
+  /* chart cards */
+  .card{background:var(--surface);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+  .card-head{margin-bottom:1.25rem}
+  .card-head h2{font-size:18px;font-weight:700;letter-spacing:-0.01em}
+  .card-head p{font-size:12px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:1rem}
+  .legend span{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
+  .ldot{width:8px;height:8px;border-radius:2px;display:inline-block;flex-shrink:0}
+
+  /* brand bars */
+  .brand-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px}
+  .brand-name{width:120px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+  .bar-bg{flex:1;background:var(--surface3);border-radius:3px;height:6px}
+  .bar-fill{height:6px;border-radius:3px;background:var(--green)}
+  .bcount{width:30px;text-align:right;color:var(--text3);font-size:12px;flex-shrink:0}
+
+  /* recent */
+  .recent-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+  .recent-row:last-child{border-bottom:none}
+  .recent-brand{font-weight:500;color:var(--text)}
+  .recent-date{color:var(--text3);font-size:12px}
+  .utag{display:inline-flex;align-items:center;gap:3px;background:rgba(229,83,75,0.15);color:var(--red);font-size:10px;padding:1px 6px;border-radius:4px;margin-left:6px;font-weight:600}
+
+  /* footer */
+  .footer{text-align:center;font-size:12px;color:var(--text3);margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
 <div class="page">
-  <div class="header">
-    <div class="header-left">
-      <h1>#the-vault-brand-approvals</h1>
-      <p><strong>Source</strong> Slack channel &nbsp;·&nbsp; <strong>Period</strong> Jan 5 – Jun 9, 2026</p>
-      <span class="badge">&#10003; Updated Jun 9, 2026</span>
+
+  <div class="channel-tag">#the-vault-brand-approvals</div>
+  <h1>Brand Approvals <span>Dashboard</span></h1>
+
+  <div class="notice">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#F5A623;flex-shrink:0;margin-top:1px"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Messages before Mar 11 2026 partially affected by Slack retention policy. Jan–Feb totals are lower-bound estimates.
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Month</span>
+    <button class="pill active" onclick="setMonth('all',this)">All</button>
+    <button class="pill" onclick="setMonth(1,this)">Jan</button>
+    <button class="pill" onclick="setMonth(2,this)">Feb</button>
+    <button class="pill" onclick="setMonth(3,this)">Mar</button>
+    <button class="pill" onclick="setMonth(4,this)">Apr</button>
+    <button class="pill" onclick="setMonth(5,this)">May</button>
+    <button class="pill" onclick="setMonth(6,this)">Jun</button>
+    <div class="divider"></div>
+    <button class="pill urgent-pill" id="urgentToggle" onclick="toggleUrgent()">🔴 Urgent only</button>
+    <div class="search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search brand..." id="brandSearch" oninput="updateDash()">
     </div>
   </div>
 
-  <div class="filter-row">
-    <select id="monthFilter" onchange="updateDash()">
-      <option value="all">All months</option>
-      <option value="1">Jan</option>
-      <option value="2">Feb</option>
-      <option value="3">Mar</option>
-      <option value="4">Apr</option>
-      <option value="5">May</option>
-      <option value="6">Jun</option>
-    </select>
-    <select id="urgentFilter" onchange="updateDash()">
-      <option value="all">All types</option>
-      <option value="urgent">Urgent / @here only</option>
-    </select>
-  </div>
+  <div class="stats" id="stats"></div>
 
-  <div class="metrics" id="metrics"></div>
-
-  <div class="card full">
-    <h3>Volume over time</h3>
+  <div class="card">
+    <div class="card-head">
+      <h2>Volume over time</h2>
+      <p>Submissions by month</p>
+    </div>
     <div class="legend">
-      <span><span class="ldot" style="background:#1D9E75"></span>Monthly submissions</span>
-      <span><span class="ldot" style="background:#D85A30"></span>Urgent / @here</span>
+      <span><span class="ldot" style="background:#1DB954"></span>Submissions</span>
+      <span><span class="ldot" style="background:#E5534B"></span>Urgent / @here</span>
     </div>
-    <div style="position:relative;height:220px;"><canvas id="chartVolume"></canvas></div>
+    <div style="position:relative;height:240px"><canvas id="chartVolume"></canvas></div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h3>Top brands</h3>
+      <div class="card-head"><h2>Top brands</h2><p>Filtered view</p></div>
       <div id="brandBars"></div>
     </div>
     <div class="card">
-      <h3>Recent submissions · live feed</h3>
+      <div class="card-head"><h2>Recent submissions</h2><p>Live feed · filtered</p></div>
       <div id="recentList"></div>
     </div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h3>Time of day · submission hours ET</h3>
-      <div style="position:relative;height:160px;"><canvas id="chartHour"></canvas></div>
+      <div class="card-head"><h2>Time of day</h2><p>Submission hours ET</p></div>
+      <div style="position:relative;height:180px"><canvas id="chartHour"></canvas></div>
     </div>
     <div class="card">
-      <h3>Brand mix over time · top 5 by month</h3>
+      <div class="card-head"><h2>Brand mix over time</h2><p>Top 6 brands by month</p></div>
       <div class="legend" id="mixLegend"></div>
-      <div style="position:relative;height:160px;"><canvas id="chartMix"></canvas></div>
+      <div style="position:relative;height:180px"><canvas id="chartMix"></canvas></div>
     </div>
   </div>
+
+  <div class="footer">The Vault — Brand Approvals &nbsp;·&nbsp; Jan 5 – Jun 9, 2026 &nbsp;·&nbsp; Updated Jun 9, 2026</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -123,8 +179,7 @@ const RAW = [
   {b:"Xiaomi",m:4,d:13,h:8,u:0},{b:"Le Monde",m:4,d:13,h:9,u:0},{b:"H&M",m:4,d:13,h:11,u:0},{b:"Samsung",m:4,d:13,h:14,u:0},{b:"Samsung",m:4,d:13,h:16,u:0},
   {b:"Le Monde",m:4,d:14,h:9,u:0},{b:"Alpha Theta",m:4,d:14,h:9,u:0},{b:"Alpha Theta",m:4,d:14,h:11,u:0},{b:"Telkomsel",m:4,d:14,h:11,u:0},{b:"Burger King",m:4,d:14,h:14,u:0},{b:"Samsung",m:4,d:14,h:16,u:0},{b:"Samsung",m:4,d:14,h:17,u:0},{b:"Samsung",m:4,d:14,h:18,u:0},{b:"Samsung",m:4,d:14,h:18,u:0},
   {b:"Alipay",m:5,d:23,h:10,u:0},{b:"iFood",m:5,d:23,h:15,u:0},{b:"Walmart Mexico",m:5,d:23,h:16,u:0},
-  {b:"Opera",m:5,d:27,h:9,u:0},{b:"Orange",m:5,d:27,h:10,u:0},
-  {b:"Alipay",m:5,d:28,h:12,u:0},
+  {b:"Opera",m:5,d:27,h:9,u:0},{b:"Orange",m:5,d:27,h:10,u:0},{b:"Alipay",m:5,d:28,h:12,u:0},
   {b:"Xiaomi",m:5,d:29,h:9,u:0},{b:"Roku",m:5,d:29,h:13,u:0},{b:"Alipay",m:5,d:30,h:13,u:0},{b:"Delivery Hero",m:5,d:30,h:8,u:0},
   {b:"KPN",m:5,d:19,h:12,u:0},{b:"Bose",m:5,d:19,h:17,u:0},
   {b:"Microsoft",m:5,d:20,h:9,u:0},{b:"ACT Fiber",m:5,d:20,h:9,u:0},{b:"SNCF",m:5,d:20,h:9,u:0},
@@ -141,92 +196,110 @@ const RAW = [
   {b:"Xiaomi",m:6,d:9,h:10,u:0},{b:"Sony",m:6,d:9,h:10,u:0},{b:"Cred",m:6,d:9,h:10,u:0},{b:"MTN Nigeria",m:6,d:9,h:11,u:0},
 ];
 
-const MN = ["","Jan","Feb","Mar","Apr","May","Jun"];
-let volChart, hourChart, mixChart;
+const MN=["","Jan","Feb","Mar","Apr","May","Jun"];
+let selMonth='all', urgentOnly=false;
+let volChart,hourChart,mixChart;
 
-function getFiltered() {
-  const m = document.getElementById('monthFilter').value;
-  const u = document.getElementById('urgentFilter').value;
-  return RAW.filter(r => {
-    if (m !== 'all' && r.m !== parseInt(m)) return false;
-    if (u === 'urgent' && r.u !== 1) return false;
+function setMonth(m,el){
+  selMonth=m;
+  document.querySelectorAll('.pill:not(.urgent-pill)').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  updateDash();
+}
+function toggleUrgent(){
+  urgentOnly=!urgentOnly;
+  document.getElementById('urgentToggle').classList.toggle('active',urgentOnly);
+  updateDash();
+}
+function getFiltered(){
+  const q=document.getElementById('brandSearch').value.trim().toLowerCase();
+  return RAW.filter(r=>{
+    if(selMonth!=='all'&&r.m!==selMonth)return false;
+    if(urgentOnly&&!r.u)return false;
+    if(q&&!r.b.toLowerCase().includes(q))return false;
     return true;
   });
 }
 
-function updateDash() {
-  const data = getFiltered();
-  const urgentCount = RAW.filter(r => r.u === 1).length;
-  const brandSet = new Set(data.map(r => r.b));
-  const topBrand = Object.entries(data.reduce((a,r)=>{a[r.b]=(a[r.b]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1])[0];
+function updateDash(){
+  const data=getFiltered();
+  const urgentTotal=RAW.filter(r=>r.u).length;
+  const brands=new Set(data.map(r=>r.b));
+  const bc={};data.forEach(r=>{bc[r.b]=(bc[r.b]||0)+1;});
+  const topB=Object.entries(bc).sort((a,b)=>b[1]-a[1])[0];
 
-  document.getElementById('metrics').innerHTML = `
-    <div class="metric"><div class="label">Submissions</div><div class="value">${data.length}</div><div class="sub">in selection</div></div>
-    <div class="metric"><div class="label">Unique brands</div><div class="value">${brandSet.size}</div><div class="sub">in selection</div></div>
-    <div class="metric"><div class="label">Urgent flags</div><div class="value" style="color:#c0392b">${urgentCount}</div><div class="sub">@here escalations</div></div>
-    <div class="metric"><div class="label">Top brand</div><div class="value" style="font-size:15px;padding-top:4px">${topBrand?topBrand[0]:'—'}</div><div class="sub">${topBrand?topBrand[1]+' submissions':''}</div></div>
-    <div class="metric"><div class="label">Avg / week</div><div class="value">${Math.round(RAW.length/22)}</div><div class="sub">~22 weeks total</div></div>
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><div class="lbl">Submissions</div><div class="val green">${data.length}</div><div class="sub">${selMonth==='all'?'Jan 5 – Jun 9, 2026':MN[selMonth]+' 2026'}</div></div>
+    <div class="stat"><div class="lbl">Unique brands</div><div class="val white">${brands.size}</div><div class="sub">in selection</div></div>
+    <div class="stat"><div class="lbl">Urgent flags</div><div class="val amber">${urgentTotal}</div><div class="sub">@here escalations</div></div>
+    <div class="stat"><div class="lbl">Top brand</div><div class="val white brand">${topB?topB[0]:'—'}</div><div class="sub">${topB?topB[1]+' submissions':''}</div></div>
+    <div class="stat"><div class="lbl">Avg / week</div><div class="val white">${Math.round(RAW.length/22)}</div><div class="sub">in selection</div></div>
   `;
 
-  const byMonth = Array(7).fill(null).map(()=>({total:0,urgent:0}));
-  RAW.forEach(r=>{byMonth[r.m].total++;if(r.u)byMonth[r.m].urgent++;});
-  const months = [1,2,3,4,5,6];
-  const selM = document.getElementById('monthFilter').value;
+  const byM=Array(7).fill(null).map(()=>({t:0,u:0}));
+  RAW.forEach(r=>{byM[r.m].t++;if(r.u)byM[r.m].u++;});
+  const months=[1,2,3,4,5,6];
 
-  if (volChart) volChart.destroy();
-  volChart = new Chart(document.getElementById('chartVolume'), {
-    type:'bar',
-    data:{
-      labels: months.map(m=>MN[m]),
-      datasets:[
-        {label:'Submissions',data:months.map(m=>byMonth[m].total),backgroundColor:months.map(m=>selM==='all'||parseInt(selM)===m?'#1D9E75':'rgba(29,158,117,0.2)'),borderRadius:3},
-        {label:'Urgent',data:months.map(m=>byMonth[m].urgent),backgroundColor:'#D85A30',borderRadius:3}
-      ]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:12}}},y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:11}}}}}
-  });
-
-  const bc = {};
-  data.forEach(r=>{bc[r.b]=(bc[r.b]||0)+1;});
-  const top = Object.entries(bc).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  const mx = top[0]?top[0][1]:1;
-  document.getElementById('brandBars').innerHTML = top.map(([name,cnt])=>`
-    <div class="brand-row">
-      <div class="brand-name" title="${name}">${name}</div>
-      <div class="bar-bg"><div class="bar" style="width:${Math.round(cnt/mx*100)}%"></div></div>
-      <div class="bcount">${cnt}</div>
-    </div>`).join('');
-
-  const recent = [...RAW].sort((a,b)=>(b.m*100+b.d)-(a.m*100+a.d)).slice(0,8);
-  document.getElementById('recentList').innerHTML = recent.map(r=>`
-    <div class="recent-row">
-      <span class="recent-brand">${r.b}${r.u?'<span class="urgent-tag">urgent</span>':''}</span>
-      <span class="recent-date">${MN[r.m]} ${r.d}</span>
-    </div>`).join('');
-
-  const hb = Array(24).fill(0);
-  RAW.forEach(r=>hb[r.h]++);
-  const hrs = Array.from({length:13},(_,i)=>i+7);
-  if (hourChart) hourChart.destroy();
-  hourChart = new Chart(document.getElementById('chartHour'),{
-    type:'bar',
-    data:{labels:hrs.map(h=>h+':00'),datasets:[{data:hrs.map(h=>hb[h]),backgroundColor:'#3266AD',borderRadius:2}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10},maxRotation:45}},y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:10}}}}}
-  });
-
-  const top5 = Object.entries(RAW.reduce((a,r)=>{a[r.b]=(a[r.b]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>x[0]);
-  const sc = ['#1D9E75','#3266AD','#D85A30','#BA7517','#9E3A8C'];
-  if (mixChart) mixChart.destroy();
-  mixChart = new Chart(document.getElementById('chartMix'),{
+  if(volChart)volChart.destroy();
+  volChart=new Chart(document.getElementById('chartVolume'),{
     type:'bar',
     data:{
       labels:months.map(m=>MN[m]),
-      datasets:top5.map((b,i)=>({label:b,data:months.map(m=>RAW.filter(r=>r.b===b&&r.m===m).length),backgroundColor:sc[i],borderRadius:2,stack:'s'}))
+      datasets:[
+        {label:'Submissions',data:months.map(m=>byM[m].t),backgroundColor:months.map(m=>selMonth==='all'||selMonth===m?'#1DB954':'rgba(29,185,84,0.15)'),borderRadius:4},
+        {label:'Urgent',data:months.map(m=>byM[m].u),backgroundColor:'#E5534B',borderRadius:4}
+      ]
     },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:11}},stacked:true},y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:10}},stacked:true}}}
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{
+      x:{grid:{display:false},ticks:{color:'#606060',font:{size:12,family:'Space Grotesk'}}},
+      y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#606060',font:{size:11,family:'Space Grotesk'}}}
+    }}
   });
 
-  document.getElementById('mixLegend').innerHTML = top5.map((b,i)=>`<span><span class="ldot" style="background:${sc[i]}"></span>${b}</span>`).join('');
+  const top=Object.entries(bc).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const mx=top[0]?top[0][1]:1;
+  document.getElementById('brandBars').innerHTML=top.map(([name,cnt])=>`
+    <div class="brand-row">
+      <div class="brand-name" title="${name}">${name}</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${Math.round(cnt/mx*100)}%"></div></div>
+      <div class="bcount">${cnt}</div>
+    </div>`).join('');
+
+  const recent=[...data].sort((a,b)=>(b.m*100+b.d)-(a.m*100+a.d)).slice(0,8);
+  document.getElementById('recentList').innerHTML=recent.map(r=>`
+    <div class="recent-row">
+      <span class="recent-brand">${r.b}${r.u?'<span class="utag">urgent</span>':''}</span>
+      <span class="recent-date">${MN[r.m]} ${r.d}</span>
+    </div>`).join('');
+
+  const hb=Array(24).fill(0);
+  RAW.forEach(r=>hb[r.h]++);
+  const hrs=Array.from({length:13},(_,i)=>i+7);
+  if(hourChart)hourChart.destroy();
+  hourChart=new Chart(document.getElementById('chartHour'),{
+    type:'bar',
+    data:{labels:hrs.map(h=>h+':00'),datasets:[{data:hrs.map(h=>hb[h]),backgroundColor:'#1DB954',borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{
+      x:{grid:{display:false},ticks:{color:'#606060',font:{size:10,family:'Space Grotesk'},maxRotation:45}},
+      y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#606060',font:{size:10,family:'Space Grotesk'}}}
+    }}
+  });
+
+  const top6=Object.entries(RAW.reduce((a,r)=>{a[r.b]=(a[r.b]||0)+1;return a;},{})).sort((a,b)=>b[1]-a[1]).slice(0,6).map(x=>x[0]);
+  const sc=['#1DB954','#3D8EFF','#E5534B','#F5A623','#A855F7','#06B6D4'];
+  if(mixChart)mixChart.destroy();
+  mixChart=new Chart(document.getElementById('chartMix'),{
+    type:'bar',
+    data:{
+      labels:months.map(m=>MN[m]),
+      datasets:top6.map((b,i)=>({label:b,data:months.map(m=>RAW.filter(r=>r.b===b&&r.m===m).length),backgroundColor:sc[i],borderRadius:2,stack:'s'}))
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{
+      x:{grid:{display:false},ticks:{color:'#606060',font:{size:11,family:'Space Grotesk'}},stacked:true},
+      y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#606060',font:{size:10,family:'Space Grotesk'}},stacked:true}
+    }}
+  });
+  document.getElementById('mixLegend').innerHTML=top6.map((b,i)=>`<span><span class="ldot" style="background:${sc[i]}"></span>${b}</span>`).join('');
 }
 
 updateDash();
