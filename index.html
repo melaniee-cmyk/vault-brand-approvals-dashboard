@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,13 +97,13 @@
 
   <div class="notice">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#F5A623;flex-shrink:0;margin-top:1px"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-    Messages before Mar 11 2026 partially affected by Slack retention policy. Jan–Feb totals are lower-bound estimates.
+    Data starts Mar 11, 2026. Earlier messages were removed by Slack retention policy.
   </div>
 
   <div class="filter-bar">
     <span class="filter-label">Month</span>
     <button class="pill active" onclick="setMonth('all',this)">All</button>
-    <button class="pill" onclick="setMonth(1,this)">Jan</button>
+
     <button class="pill" onclick="setMonth(2,this)">Feb</button>
     <button class="pill" onclick="setMonth(3,this)">Mar</button>
     <button class="pill" onclick="setMonth(4,this)">Apr</button>
@@ -155,13 +154,12 @@
     </div>
   </div>
 
-  <div class="footer">The Vault — Brand Approvals &nbsp;·&nbsp; Jan 5 – Jun 9, 2026 &nbsp;·&nbsp; Updated Jun 9, 2026</div>
+  <div class="footer">The Vault — Brand Approvals &nbsp;·&nbsp; Mar 11 – Jun 9, 2026 &nbsp;·&nbsp; Updated Jun 9, 2026</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const RAW = [
-  {b:"Disney/Hulu",m:1,d:5,h:11,u:0},{b:"Samsung",m:1,d:5,h:12,u:0},{b:"Trendyol",m:1,d:5,h:12,u:0},{b:"Disney/Hulu",m:1,d:5,h:11,u:0},{b:"Disney/Hulu",m:1,d:5,h:18,u:0},{b:"Delivery Hero",m:1,d:5,h:11,u:0},
   {b:"Le Monde",m:3,d:11,h:11,u:0},{b:"Serato",m:3,d:11,h:8,u:0},{b:"Roku",m:3,d:11,h:9,u:0},{b:"Naver",m:3,d:12,h:10,u:1},{b:"TrueMoney",m:3,d:12,h:10,u:0},{b:"Momo",m:3,d:13,h:9,u:0},{b:"Samsung",m:3,d:16,h:9,u:0},
   {b:"Telkomsel",m:3,d:17,h:13,u:0},{b:"Samsung",m:3,d:18,h:12,u:0},{b:"Samsung",m:3,d:18,h:13,u:0},
   {b:"Le Monde/Courrier",m:3,d:19,h:9,u:0},{b:"Burger King",m:3,d:19,h:16,u:0},
@@ -230,11 +228,11 @@ function updateDash(){
   const topB=Object.entries(bc).sort((a,b)=>b[1]-a[1])[0];
 
   document.getElementById('stats').innerHTML=`
-    <div class="stat"><div class="lbl">Submissions</div><div class="val green">${data.length}</div><div class="sub">${selMonth==='all'?'Jan 5 – Jun 9, 2026':MN[selMonth]+' 2026'}</div></div>
+    <div class="stat"><div class="lbl">Submissions</div><div class="val green">${data.length}</div><div class="sub">${selMonth==='all'?'Mar 11 – Jun 9, 2026':MN[selMonth]+' 2026'}</div></div>
     <div class="stat"><div class="lbl">Unique brands</div><div class="val white">${brands.size}</div><div class="sub">in selection</div></div>
     <div class="stat"><div class="lbl">Urgent flags</div><div class="val amber">${urgentTotal}</div><div class="sub">@here escalations</div></div>
     <div class="stat"><div class="lbl">Top brand</div><div class="val white brand">${topB?topB[0]:'—'}</div><div class="sub">${topB?topB[1]+' submissions':''}</div></div>
-    <div class="stat"><div class="lbl">Avg / week</div><div class="val white">${Math.round(RAW.length/22)}</div><div class="sub">in selection</div></div>
+    <div class="stat"><div class="lbl">Avg / week</div><div class="val white">${Math.round(RAW.length/13)}</div><div class="sub">in selection</div></div>
   `;
 
   const byM=Array(7).fill(null).map(()=>({t:0,u:0}));
