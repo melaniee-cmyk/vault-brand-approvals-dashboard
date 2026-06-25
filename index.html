@@ -154,7 +154,7 @@
     </div>
   </div>
 
-  <div class="footer">The Vault — Brand Approvals &nbsp;·&nbsp; Mar 11 – Jun 18, 2026 &nbsp;·&nbsp; Updated Jun 18, 2026</div>
+  <div class="footer">The Vault — Brand Approvals &nbsp;·&nbsp; Mar 11 – Jun 25, 2026 &nbsp;·&nbsp; Updated Jun 25, 2026</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -200,6 +200,10 @@ const RAW = [
   {b:"McDonald's France",m:6,d:16,h:11,u:0},{b:"JoyBuy",m:6,d:16,h:13,u:1},{b:"ACT Fiber",m:6,d:16,h:14,u:0},{b:"JoyBuy",m:6,d:16,h:17,u:0},
   {b:"JoyBuy",m:6,d:17,h:8,u:0},{b:"Telkomsel",m:6,d:17,h:12,u:0},{b:"Comcast",m:6,d:17,h:12,u:0},{b:"Samsung",m:6,d:17,h:14,u:0},{b:"Roku",m:6,d:17,h:15,u:0},{b:"JoyBuy",m:6,d:17,h:15,u:0},{b:"Inpost",m:6,d:17,h:10,u:0},{b:"JoyBuy",m:6,d:17,h:10,u:0},
   {b:"OPPO",m:6,d:18,h:9,u:0},{b:"JoyBuy",m:6,d:18,h:11,u:0},{b:"Comcast",m:6,d:18,h:11,u:0},{b:"Vodafone India",m:6,d:18,h:13,u:0},{b:"Vodafone India",m:6,d:18,h:13,u:0},
+  {b:"Samsung",m:6,d:19,h:8,u:0},{b:"ACT Fiber",m:6,d:19,h:8,u:0},{b:"McDonald's France",m:6,d:19,h:9,u:0},
+  {b:"Vodafone India",m:6,d:22,h:10,u:0},{b:"Vodafone India",m:6,d:22,h:10,u:0},{b:"Samsung",m:6,d:22,h:10,u:0},{b:"JoyBuy",m:6,d:22,h:10,u:0},{b:"Disney",m:6,d:22,h:17,u:0},
+  {b:"Vodafone India",m:6,d:23,h:8,u:0},{b:"Cred",m:6,d:23,h:8,u:0},{b:"Zain",m:6,d:23,h:9,u:0},{b:"Moonton",m:6,d:23,h:12,u:0},
+  {b:"SNCF",m:6,d:24,h:7,u:0},{b:"JoyBuy",m:6,d:24,h:10,u:0},
 ];
 
 const MN=["","Jan","Feb","Mar","Apr","May","Jun"];
@@ -235,7 +239,7 @@ function updateDash(){
   const topB=Object.entries(bc).sort((a,b)=>b[1]-a[1])[0];
 
   document.getElementById('stats').innerHTML=`
-    <div class="stat"><div class="lbl">Submissions</div><div class="val green">${data.length}</div><div class="sub">${selMonth==='all'?'Mar 11 – Jun 18, 2026':MN[selMonth]+' 2026'}</div></div>
+    <div class="stat"><div class="lbl">Submissions</div><div class="val green">${data.length}</div><div class="sub">${selMonth==='all'?'Mar 11 – Jun 25, 2026':MN[selMonth]+' 2026'}</div></div>
     <div class="stat"><div class="lbl">Unique brands</div><div class="val white">${brands.size}</div><div class="sub">in selection</div></div>
     <div class="stat"><div class="lbl">Urgent flags</div><div class="val amber">${urgentTotal}</div><div class="sub">@here escalations</div></div>
     <div class="stat"><div class="lbl">Top brand</div><div class="val white brand">${topB?topB[0]:'—'}</div><div class="sub">${topB?topB[1]+' submissions':''}</div></div>
